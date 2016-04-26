@@ -11,7 +11,7 @@ namespace GameOfLife
     {
         private readonly IEnumerable<ILifeRule> _lifeRules;
 
-        public Cell(IEnumerable<ILifeRule> lifeRules, bool shouldStartOutAlive)
+        public Cell(IEnumerable<ILifeRule> lifeRules, bool shouldStartOutAlive = false)
         {
             _lifeRules = lifeRules;
             IsAlive = shouldStartOutAlive;
