@@ -4,7 +4,7 @@
     {
         public bool ShouldHandle(bool isAlive)
         {
-            return isAlive;
+            return isAlive == false;
         }
 
         public bool ShouldLive(int numberOfNeighbors)

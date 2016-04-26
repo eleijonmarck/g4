@@ -45,7 +45,7 @@ namespace GameOfLife
                     Cells[x,y] = new Cell(lifeRules);
         }
 
-        private void SetLivingCell(int row, int column)
+        public void SetLivingCell(int row, int column)
         {
             Cells[row, column].IsAlive = true;
         }
@@ -58,6 +58,7 @@ namespace GameOfLife
                 for (var y = 0; y < _columnCount; y++)
                     nextGeneration[x, y] = Cells[x, y].Split(CountLivingNeighbors(x, y));
 
+            Cells = nextGeneration;
         }
 
         public int CountLivingNeighbors(int row, int column)

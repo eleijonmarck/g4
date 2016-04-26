@@ -9,15 +9,19 @@ namespace GameOfLife.Tests
     public class A_cell_has_come_alive
     {
         [Test]
-        public void Cell_should_abide_to_the_life_rules(
+        [TestCase(true, 4, false)]
+        [TestCase(true, 1, false)]
+        [TestCase(true, 2, true)]
+        [TestCase(false, 3, true)]
+        public void Cell_should_abide_to_all_the_life_rules(
             bool isAliveFromStart,
             int numberOfNeighbors,
             bool isAliveAfterSplit)
         {
             var lifeRules = new List<ILifeRule>()
             {
-                new LiveCellWithFewerThanTwoNeighborsRule(),
                 new LiveCellWithMoreThanThreeLiveNeighborsRule(),
+                new LiveCellWithFewerThanTwoNeighborsRule(),
                 new LiveCellWithTwoOrThreeNeighborsRule(),
                 new DeadCellWithThreeLiveNeighborsRule()
             };

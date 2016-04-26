@@ -13,12 +13,6 @@ namespace GameOfLife.Tests.Game_of_life_rules_tests
     [TestFixture]
     public class When_cell_split
     {
-        [SetUp]
-        public void SetUp()
-        {
-
-        }
-
         //Any live cell with fewer than two live neighbours dies, as if caused by under-population.
         [Test]
         public void Cell_with_fewer_than_two_neighbours()
@@ -42,7 +36,7 @@ namespace GameOfLife.Tests.Game_of_life_rules_tests
         public void Cell_with_more_than_three_live_neighbors()
         {
             var cellRule = new LiveCellWithMoreThanThreeLiveNeighborsRule();
-            cellRule.ShouldLive(4).Should().BeTrue();
+            cellRule.ShouldLive(4).Should().BeFalse();
         }
 
     //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
