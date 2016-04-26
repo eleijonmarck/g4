@@ -1,7 +1,12 @@
 ﻿namespace GameOfLife.Rules
 {
-    public class DeadCellWithThreeLiveNeighborsRule
+    public class DeadCellWithThreeLiveNeighborsRule : ILifeRule
     {
+        public bool ShouldHandle(bool isAlive)
+        {
+            return isAlive;
+        }
+
         public bool ShouldLive(int numberOfNeighbors)
         {
             return numberOfNeighbors == 3;

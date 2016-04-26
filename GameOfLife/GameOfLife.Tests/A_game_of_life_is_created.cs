@@ -24,48 +24,46 @@ namespace GameOfLife.Tests
             _gameOfLife.SetLivingCells();
             _gameOfLife.Cells().IsAlive().Should.BeTrue();
         }
-
-    }
-
-    public class GameOfLife()
-    {
-        private Cells _cells;
-
-        public GameOfLife()
-        {
-        Init();
-        }
-
-        private void Init()
-        {
-            CreateCells();
-        }
-
-        private void CreateCells()
-        {
-        }
-        public class Cells()
-        {
-            public Cells()
-            {
-                _cell = new Cell();
-            }
-
-            public class Cell()
-            {
-                private int _x_position;
-                private int _y_position;
-                public Cell()
-                {
-                    _x_position;
-                    _y_position;
-                }
-
-                public Cell SetPositionOfCell(int Xposition, int Yposition)
-                {
-                    
-                }
-            }
-        }
     }
 }
+
+    //public class GameOfLife()
+    //{
+    //    private Cells _cells;
+
+    //    public GameOfLife()
+    //    {
+    //    Init();
+    //    }
+
+    //    private void Init()
+    //    {
+    //        CreateCells();
+    //    }
+
+    //    private void CreateCells()
+    //    {
+    //    }
+    //    public class Cells()
+    //    {
+    //        public Cells()
+    //        {
+    //            _cell = new Cell();
+    //        }
+
+    //        public class Cell()
+    //        {
+    //            private int _x_position;
+    //            private int _y_position;
+    //            public Cell()
+    //            {
+    //                _x_position;
+    //                _y_position;
+    //            }
+
+    //            public Cell SetPositionOfCell(int Xposition, int Yposition)
+    //            {
+                    
+    //            }
+    //        }
+    //    }
