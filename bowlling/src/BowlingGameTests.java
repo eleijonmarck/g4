@@ -38,4 +38,16 @@ public class BowlingGameTests extends TestCase {
         assertEquals(20, g.score());
 
     }
+
+    @Test
+    public void testOneStrike() throws Exception {
+        Game g = new Game();
+
+        g.roll(10);
+        g.roll(0);
+        g.roll(2);
+        g.roll(8);
+
+        assertEquals(30, g.score());
+    }
 }

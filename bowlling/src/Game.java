@@ -21,6 +21,10 @@ public class Game {
         rolls = rolls +1;
         frameScore += pins;
 
+        if (rolls % 1 == 0 && frameScore == 10){
+            addNextPin = true;
+        }
+
         if (rolls % 2 == 0){
             if (frameScore == 10){
                 addNextPin = true;
