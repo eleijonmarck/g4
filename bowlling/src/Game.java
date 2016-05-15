@@ -13,22 +13,20 @@ public class Game {
     }
 
     public void roll(int pins) {
+        rolls = rolls +1;
         totalScore += pins;
+        frameScore += pins;
 
         if (addNextPin){
             totalScore += pins;
         }
-        rolls = rolls +1;
-        frameScore += pins;
 
         if (rolls % 1 == 0 && frameScore == 10){
             addNextPin = true;
         }
 
-        if (rolls % 2 == 0){
-            if (frameScore == 10){
-                addNextPin = true;
-            }
+        if (rolls % 2 == 0 && frameScore == 10){
+            addNextPin = true;
             frameScore = 0;
         }
     }
