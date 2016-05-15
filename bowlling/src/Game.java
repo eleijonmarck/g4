@@ -7,6 +7,7 @@ public class Game {
     private int rolls;
     private int frameScore;
     private boolean addNextPin;
+    private boolean addNextTwoRolls;
 
     public Game(){
         rolls = 0;
@@ -19,14 +20,28 @@ public class Game {
 
         if (addNextPin){
             totalScore += pins;
+            addNextPin = false;
+        }
+
+        if (addNextTwoRolls){
+            totalScore += pins;
+            if (rolls % 2 == 0){
+                addNextPin = false;
+            }
         }
 
         if (rolls % 1 == 0 && frameScore == 10){
-            addNextPin = true;
+            addNextTwoRolls = true;
+            rolls = rolls + 1;
+            frameScore = 0;
         }
 
         if (rolls % 2 == 0 && frameScore == 10){
             addNextPin = true;
+            frameScore = 0;
+        }
+
+        if ( rolls % 2 == 0 && frameScore < 10){
             frameScore = 0;
         }
     }
