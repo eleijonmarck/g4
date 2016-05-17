@@ -1,16 +1,18 @@
 /**
  * Created by ericleijonmarck on 2016-05-13.
  */
-public class Game {
+public class BowlingScoreBoard implements BowlingGame {
 
     private int totalScore;
     private int rolls;
     private int frameScore;
+    private int strikeCount;
     private boolean addNextPin;
     private boolean addNextTwoRolls;
 
-    public Game(){
+    public BowlingScoreBoard(){
         rolls = 0;
+        strikeCount = 0;
     }
 
     public void roll(int pins) {
@@ -30,9 +32,15 @@ public class Game {
             }
         }
 
-        if (rolls % 1 == 0 && frameScore == 10){
+        if(strikeCount == 3 && rolls < 20){
+            totalScore += pins;
+            strikeCount = strikeCount - 1;
+        }
+
+        if (frameScore == 10){
             addNextTwoRolls = true;
             rolls = rolls + 1;
+            strikeCount = strikeCount + 1;
             frameScore = 0;
         }
 

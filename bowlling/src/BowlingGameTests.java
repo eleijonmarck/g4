@@ -1,16 +1,14 @@
-import junit.framework.TestCase;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
-public class BowlingGameTests extends TestCase {
+
+public class BowlingGameTests {
 
     @Test
-    public void testGutterGame() throws Exception {
+    public void shouldReturnZeroByPlayingAGutterGame() throws Exception {
 
-        Game g = new Game();
+        BowlingScoreBoard g = new BowlingScoreBoard();
         for (int i=0; i < 20; i++)
             g.roll(0);
 
@@ -18,9 +16,9 @@ public class BowlingGameTests extends TestCase {
     }
 
     @Test
-    public void testAllOnesGame() throws Exception {
+    public void shouldHaveScoreAfterMakingAllOnes() throws Exception {
 
-        Game g = new Game();
+        BowlingScoreBoard g = new BowlingScoreBoard();
         for (int i= 0; i < 20; i++){
            g.roll(1);
         }
@@ -28,9 +26,9 @@ public class BowlingGameTests extends TestCase {
     }
 
     @Test
-    public void testOneSpare() throws Exception {
+    public void shouldBeAbleToMakeASpare() throws Exception {
 
-        Game g = new Game();
+        BowlingScoreBoard g = new BowlingScoreBoard();
 
         for (int i=0;i<3;i++){
             g.roll(5);
@@ -40,13 +38,25 @@ public class BowlingGameTests extends TestCase {
     }
 
     @Test
-    public void testOneStrike() throws Exception {
-        Game g = new Game();
+    public void shouldBeAbleToMakeAStrike() throws Exception {
+        BowlingScoreBoard g = new BowlingScoreBoard();
 
         g.roll(10);
         g.roll(2);
         g.roll(8);
 
         assertEquals(30, g.score());
+    }
+
+    @Test
+    public void shouldBeAbleToPlayAPerfectGame() throws Exception {
+        BowlingScoreBoard g = new BowlingScoreBoard();
+
+        for (int i=0;i<12;i++)
+        {
+            g.roll(10);
+        }
+
+        assertEquals(300, g.score());
     }
 }
