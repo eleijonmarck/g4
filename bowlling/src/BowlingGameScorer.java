@@ -18,7 +18,11 @@ public class BowlingGameScorer implements BowlingGame {
     public BowlingGameScorer(){
         rolls = 0;
         strikeCount = 0;
-        _frames = new ArrayList<Frame>(10);
+        frameNumber = 0;
+        _frames = new ArrayList<Frame>();
+        for (int i=0;i<11;i++){
+            _frames.add(new Frame());
+        }
     }
 
     public void roll(int pins) {
@@ -28,9 +32,11 @@ public class BowlingGameScorer implements BowlingGame {
         }
         totalScore += pins;
         frameScore += pins;
+        _frames.get(frameNumber).addFrameScore(pins);
 
         if (addNextPin){
             totalScore += pins;
+            _frames.get(frameNumber - 1).addFrameScore(pins);
             addNextPin = false;
         }
 
@@ -64,7 +70,7 @@ public class BowlingGameScorer implements BowlingGame {
     }
 
     public int score() {
-        return totalScore;
+        return _frames.stream().mapToInt(frame -> frame.score()).sum();
     }
 
     private boolean isASpare(){
@@ -72,7 +78,7 @@ public class BowlingGameScorer implements BowlingGame {
     }
 
     private boolean isAStrike(){
-        return (frameScore == 10 && rolls % 2 != 0);
+        return (_frames.get(frameNumber).score() == 10 && rolls % 2 != 0);
     }
 
     private boolean isTwoRollsWithoutHittingAStrikeOrASpare(){
