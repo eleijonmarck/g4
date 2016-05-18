@@ -8,7 +8,7 @@ public class BowlingGameTests {
     @Test
     public void shouldReturnZeroByPlayingAGutterGame() throws Exception {
 
-        BowlingScoreBoard g = new BowlingScoreBoard();
+        BowlingGameScorer g = new BowlingGameScorer();
         for (int i=0; i < 20; i++)
             g.roll(0);
 
@@ -18,7 +18,7 @@ public class BowlingGameTests {
     @Test
     public void shouldHaveScoreAfterMakingAllOnes() throws Exception {
 
-        BowlingScoreBoard g = new BowlingScoreBoard();
+        BowlingGameScorer g = new BowlingGameScorer();
         for (int i= 0; i < 20; i++){
            g.roll(1);
         }
@@ -28,7 +28,7 @@ public class BowlingGameTests {
     @Test
     public void shouldBeAbleToMakeASpare() throws Exception {
 
-        BowlingScoreBoard g = new BowlingScoreBoard();
+        BowlingGameScorer g = new BowlingGameScorer();
 
         for (int i=0;i<3;i++){
             g.roll(5);
@@ -39,7 +39,7 @@ public class BowlingGameTests {
 
     @Test
     public void shouldBeAbleToMakeAStrike() throws Exception {
-        BowlingScoreBoard g = new BowlingScoreBoard();
+        BowlingGameScorer g = new BowlingGameScorer();
 
         g.roll(10);
         g.roll(2);
@@ -50,7 +50,7 @@ public class BowlingGameTests {
 
     @Test
     public void shouldBeAbleToPlayAPerfectGame() throws Exception {
-        BowlingScoreBoard g = new BowlingScoreBoard();
+        BowlingGameScorer g = new BowlingGameScorer();
 
         for (int i=0;i<12;i++)
         {
