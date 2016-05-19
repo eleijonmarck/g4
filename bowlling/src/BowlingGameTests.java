@@ -33,7 +33,8 @@ public class BowlingGameTests {
         for (int i=0;i<3;i++){
             g.roll(5);
         }
-        assertEquals(20, g.score());
+        g.roll(3);
+        assertEquals(23, g.score());
 
     }
 
