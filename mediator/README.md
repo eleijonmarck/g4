@@ -1,3 +1,9 @@
 # Mediator Pattern assignment in Java
 
-## Helllllllooooo (instructor => Select(x => instructor.name == visitor.name)
+## Helllllllooooo instructorNameFunction(visitor)
+
+instructors = {Jens, Jonas, Jesper}
+
+if (instructors.any(instructor => instructor.name == visitor.name))
+    else
+        "FFCG"
