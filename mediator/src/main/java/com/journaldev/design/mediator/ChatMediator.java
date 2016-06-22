@@ -4,8 +4,11 @@
  *
  * @author ericleijonmarck, @date 2016-06-22 13:23
  */
-public class Library {
-    public boolean someLibraryMethod() {
-        return true;
-    }
+
+package com.journaldev.design.mediator;
+
+
+public interface ChatMediator {
+    public void sendMessage(String msg, User user);
+    void addUser(User user);
 }
