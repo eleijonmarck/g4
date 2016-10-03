@@ -15,11 +15,11 @@ namespace KataPotterTests
         
         //When
         //Then
-        Assert.Equal(book.cost,8);
+        Assert.Equal(8,book.cost);
         }
 
         [Fact]
-        public void Two_books_should_cost_16_euros(string title1, string title2)
+        public void Two_same_books_should_cost_16_euros(string title1, string title2)
         {
             var book1 = new Book(title1);
             var book2 = new Book(title2);
@@ -29,6 +29,13 @@ namespace KataPotterTests
                 book2
             };
             var order = new Order(books);
+
+            Assert.Equal(16,order.Cost());
+        }
+
+        [Fact]
+        public void Two_different_books_should_cost_16_euros()
+        {
 
         }
     }
