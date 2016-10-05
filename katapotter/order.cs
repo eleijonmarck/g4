@@ -1,53 +1,64 @@
 using System.Collections.Generic;
 using System.Linq;
+using Katapotter.Discounter;
+using Katapotter.DiscountRules;
 public class Order
 {
+    private static decimal OneBookCost = 8;
+    private readonly List<Book> _books;
+    public IEnumerable<Book> Books { get { return _books; }}
 
-    public int numberOfBooksOrdered;
-    public int numberOfExtraBooksOrdered;
-    public int distinctBooks;
-    public Order(List<Book> books)
+    private Discounter _discounter;
+    public Order()
     {
-
-        numberOfBooksOrdered = books.Count;
-
-        distinctBooks = books.Select( x => x.title ).Distinct().Count();
-
-        numberOfExtraBooksOrdered = numberOfBooksOrdered - distinctBooks;
+        _books = new List<Book>();
+        _discounter = new Discounter(new List<IDiscountRule>
+        {
+            new IDiscountRuleTwoBooks(),
+            new IDiscountRuleThreeBooks(),
+            new IDiscountRuleFourBooks(),
+            new IDiscountRuleFiveBooks(),
+        });
     }
 
-    public double Cost()
+    public int numberOfBooksOrdered()
     {
-        double cost = 0;
+        return _books.Count();
+    }
+
+    public int getDistinctBooks()
+    {
+        return _books.Select( x => x.title ).Distinct().Count();
+    }
+
+    public decimal Cost()
+    {
+        var distinctBooks = getDistinctBooks();
+        decimal cost = 0;
         if (distinctBooks > 1)
         {
-            cost += discoutCostForBooks(distinctBooks);
+            cost += originalPriceForBooks(_books) - _discounter.CalculateDiscount(distinctBooks)*originalPriceForBooks(_books);
         }
         else 
         {
-            cost += originalPriceForBooks(numberOfBooksOrdered);
+            cost += originalPriceForBooks(_books);
         }
 
         return cost;
     }
 
-    private double discoutCostForBooks(int discountbooks)
+    private decimal originalPriceForBooks(List<Book> books)
     {
-        switch (discountbooks)
-        {
-            case 2 :
-                return originalPriceForBooks(discountbooks)*TwoBookDiscount;
-            default :
-                return originalPriceForBooks(discountbooks);
-                break;
-
-        }
-    }
-    private int originalPriceForBooks(int books)
-    {
-        return books*OneBookCost;
+        return books.Count()*OneBookCost;
     }
 
-    private static int OneBookCost = 8;
-    private static double TwoBookDiscount = 0.05;
+    public void Add(Book book)
+    {
+        _books.Add(book);
+    }
+
+    public void Remove(Book book)
+    {
+        _books.Remove(book);
+    }
 }
