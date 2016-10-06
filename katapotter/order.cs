@@ -9,16 +9,10 @@ public class Order
     public IEnumerable<Book> Books { get { return _books; }}
 
     private Discounter _discounter;
-    public Order()
+    public Order(IEnumerable<IDiscountRule> discountRules)
     {
         _books = new List<Book>();
-        _discounter = new Discounter(new List<IDiscountRule>
-        {
-            new IDiscountRuleTwoBooks(),
-            new IDiscountRuleThreeBooks(),
-            new IDiscountRuleFourBooks(),
-            new IDiscountRuleFiveBooks(),
-        });
+        _discounter = new Discounter(discountRules);
     }
 
     public int numberOfBooksOrdered()

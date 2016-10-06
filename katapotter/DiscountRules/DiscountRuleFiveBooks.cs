@@ -1,11 +1,8 @@
 namespace Katapotter.DiscountRules
 {
-    public class IDiscountRuleFiveBooks : IDiscountRule
+    public class DiscountRuleFiveBooks : IDiscountRule
     {
-        public decimal Discount
-        {
-            get {return 25;}
-        }
+        public decimal Discount => 0.25m;
 
         public bool Match(int numberOfDistinctBooks)
         {
